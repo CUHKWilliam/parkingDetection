@@ -10,6 +10,21 @@ import math
 import pickle
 
 
+
+# interval for cutting off the sound data
+interval = 1
+
+# train:test split ratio
+train_test_split = 9
+
+
+# Set soundFileDir to the directory containing your sound data file
+soundFileListDir = ""
+soundFileList = os.listdir(soundFileListDir)
+
+dataUnderList = []
+dataPeripheralList = []
+
 def read_wave_data(file_path):
     f = wave.open(file_path, "rb")
     params = f.getparams()
@@ -64,16 +79,6 @@ def align_under_peripheral_data(wave_data_peripheral, time_data_peripheral,
            time_data_peripheral[:][0: len(wave_data_peripheral[0]) - phase_diff], \
            wave_data_under[:][0: len(wave_data_under[0]) - phase_diff], \
            time_data_under[:][0: len(wave_data_under[0]) - phase_diff]
-
-
-soundFileListDir = "../parkingPlace1ForTrain/"
-soundFileList = os.listdir(soundFileListDir)
-
-
-dataUnderList = []
-dataPeripheralList = []
-interval = 1
-
 
 def getData():
     for soundFile in soundFileList:
@@ -166,7 +171,6 @@ def getData():
                 dataPeripheralList.append(fft_data_ratio)
         print("turn to the next")
 
-    train_test_split = 999999
     tagUnderList = [1 for x in range(len(dataUnderList))]
     tagPeripheralList = [0 for x in range(len(dataPeripheralList))]
     dataList = dataUnderList
