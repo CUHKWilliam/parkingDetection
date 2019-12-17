@@ -20,7 +20,7 @@ import sys
 
 LR = 0.01
 BATCH_SIZE = 32
-EPOCH = 64000
+EPOCH = 200
 
 if os.path.exists("train_data.pkl"):
     f = open("train_data.pkl", "rb")
